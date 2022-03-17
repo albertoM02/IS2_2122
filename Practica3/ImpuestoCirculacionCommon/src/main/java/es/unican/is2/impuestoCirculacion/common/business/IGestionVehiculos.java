@@ -1,3 +1,7 @@
+package es.unican.is2.impuestoCirculacion.common.business;
+
+import es.unican.is2.impuestoCirculacion.common.dominio.Vehiculo;
+
 /**
  * Interfaz de negocio para gestionar vehículos
  */

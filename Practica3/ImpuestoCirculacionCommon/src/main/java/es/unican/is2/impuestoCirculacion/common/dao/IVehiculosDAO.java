@@ -1,4 +1,7 @@
+package es.unican.is2.impuestoCirculacion.common.dao;
 import java.util.List;
+
+import es.unican.is2.impuestoCirculacion.common.dominio.Vehiculo;
 
 /**
  * Interfaz DAO para vehiculos
