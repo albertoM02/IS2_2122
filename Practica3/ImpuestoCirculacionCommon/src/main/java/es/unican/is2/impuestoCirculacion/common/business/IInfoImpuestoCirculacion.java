@@ -23,7 +23,9 @@ public interface IInfoImpuestoCirculacion {
 	 * @return El contribuyente
 	 * 		   null si no existe
 	 */
-	public Contribuyente contribuyente(String dni); 
+	public Contribuyente contribuyente(String dni);
+
+	Vehiculo bajaVehiculo(String matricula, String dni) throws OperacionNoValida; 
 	
 	
 }
