@@ -1,5 +1,6 @@
 package es.unican.is2.impuestoCirculacion.common.dominio;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 @SuppressWarnings("serial")
@@ -16,6 +17,8 @@ public class Contribuyente implements Serializable {
     	this.apellido1 = ap1;
     	this.apellido2 = ap2;
     	this.dni = dni;
+    	List<Vehiculo> misVehiculos = new ArrayList<Vehiculo>();
+    	this.vehiculos = misVehiculos;
 	}
 
 	/**
