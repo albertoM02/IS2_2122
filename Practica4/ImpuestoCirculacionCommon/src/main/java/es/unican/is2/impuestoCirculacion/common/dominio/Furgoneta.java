@@ -2,6 +2,8 @@ package es.unican.is2.impuestoCirculacion.common.dominio;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.Period;
+
+import es.unican.is2.impuestoCirculacion.common.business.OperacionNoValida;
 @SuppressWarnings("serial")
 public class Furgoneta
     extends Turismo implements Serializable
@@ -13,7 +15,7 @@ public class Furgoneta
 	private double potencia;
     private boolean comercial;
     
-    public Furgoneta(String matricula, LocalDate fechaMatriculacion, double potencia) {
+    public Furgoneta(String matricula, LocalDate fechaMatriculacion, double potencia) throws OperacionNoValida {
 		super(matricula, fechaMatriculacion, potencia);
 	}
     

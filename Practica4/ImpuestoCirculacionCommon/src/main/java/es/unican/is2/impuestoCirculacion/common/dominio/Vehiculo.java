@@ -5,7 +5,7 @@ import java.time.LocalDate;
 
 
 @SuppressWarnings("serial")
-public abstract class Vehiculo implements Serializable{
+public abstract class Vehiculo implements Serializable {
   
     private String matricula;
 	private LocalDate fechaMatriculacion;	

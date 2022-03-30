@@ -4,16 +4,22 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.Period;
 
+import es.unican.is2.impuestoCirculacion.common.business.OperacionNoValida;
+
 @SuppressWarnings("serial")
-public class Turismo
-    extends Vehiculo implements Serializable
+public class Turismo 
+    extends Vehiculo implements Serializable 
 {
 
 	private double potencia;
 	
-	public Turismo(String matricula , LocalDate fechaMatriculacion, double potencia) {
+	public Turismo(String matricula , LocalDate fechaMatriculacion, double potencia) throws OperacionNoValida {
 		super(matricula, fechaMatriculacion);
 		this.potencia = potencia;
+		//Caso Matriculado en el futuro
+		if (LocalDate.now().isBefore(fechaMatriculacion)) {
+			throw new OperacionNoValida("La fecha de matriculacion no puede ser posterior a hoy");
+		}
 	}
 
 
