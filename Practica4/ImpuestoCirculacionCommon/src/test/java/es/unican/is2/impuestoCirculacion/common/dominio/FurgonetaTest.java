@@ -9,8 +9,8 @@ import org.junit.Test;
 
 import es.unican.is2.impuestoCirculacion.common.business.OperacionNoValida;
 
-public class TurismoTest {
-	
+public class FurgonetaTest {
+
 	//Objeto para realizar las pruebas
 	private Turismo sut;
 	
@@ -20,7 +20,7 @@ public class TurismoTest {
 	}
 
 	@Test
-	public void testConstructorTurismo() throws OperacionNoValida {
+	public void testConstructor() throws OperacionNoValida {
 		//Casos Validos
 		
 		//C1
@@ -79,39 +79,5 @@ public class TurismoTest {
 		} catch (NullPointerException e) {
 		}	
 		
-	}
-	
-	@Test
-	public void testPrecioImpuestoTurismo() throws OperacionNoValida {
-		
-		// C1
-		
-		sut = new Turismo("0000ABC", LocalDate.now().minusYears(25) , 50.00);
-		assertTrue(sut.precioImpuesto() == 0.0);
-		
-		// C2
-		
-		sut = new Turismo("0000ABC", LocalDate.now() , 5.00);
-		assertTrue(sut.precioImpuesto() == 25.24);
-		
-		// C3
-		
-		sut = new Turismo("0000ABC", LocalDate.now() , 10.00);
-		assertTrue(sut.precioImpuesto() == 68.16);
-		
-		// C4
-		
-		sut = new Turismo("0000ABC", LocalDate.now() , 13.00);
-		assertTrue(sut.precioImpuesto() == 143.88);
-		
-		// C5
-		
-		sut = new Turismo("0000ABC", LocalDate.now() , 18.00);
-		assertTrue(sut.precioImpuesto() == 179.22);
-		
-		// C6
-		
-		sut = new Turismo("0000ABC", LocalDate.now() , 40.00);
-		assertTrue(sut.precioImpuesto() == 224.00);
 	}
 }

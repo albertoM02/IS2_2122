@@ -3,13 +3,18 @@ package es.unican.is2.impuestoCirculacion.common.dominio;
 import java.time.LocalDate;
 import java.time.Period;
 
+import es.unican.is2.impuestoCirculacion.common.business.OperacionNoValida;
+
 @SuppressWarnings("serial")
 public class Motocicleta extends Vehiculo
 {
 	private int cilindrada;
 	
-	public Motocicleta(String matricula, LocalDate fechaMatriculacion, int cilindrada) {
+	public Motocicleta(String matricula, LocalDate fechaMatriculacion, int cilindrada) throws OperacionNoValida {
 		super(matricula, fechaMatriculacion);
+		if (cilindrada < 0) {
+			throw new OperacionNoValida("La potencia no puede ser negativa.");
+		}
 		this.cilindrada = cilindrada;
 	}
 

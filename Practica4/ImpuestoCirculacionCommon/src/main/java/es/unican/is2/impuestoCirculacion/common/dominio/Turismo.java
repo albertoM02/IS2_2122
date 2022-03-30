@@ -15,6 +15,9 @@ public class Turismo
 	
 	public Turismo(String matricula , LocalDate fechaMatriculacion, double potencia) throws OperacionNoValida {
 		super(matricula, fechaMatriculacion);
+		if (potencia < 0.00) {
+			throw new OperacionNoValida("La potencia no puede ser negativa.");
+		}
 		this.potencia = potencia;
 		//Caso Matriculado en el futuro
 		if (LocalDate.now().isBefore(fechaMatriculacion)) {
@@ -41,7 +44,7 @@ public class Turismo
 		LocalDate fechaMatriculacion = this.getFechaMatriculacion();
 	    LocalDate actualidad = LocalDate.now();
 	    Period diferenciaTiempo = Period.between(fechaMatriculacion, actualidad);
-		if(diferenciaTiempo.getYears() > 25) {
+		if(diferenciaTiempo.getYears() >= 25) {
 			return 0.0; //Caso vehiculos viejos no pagan.
 		}
 		if (potencia < 8.00) {

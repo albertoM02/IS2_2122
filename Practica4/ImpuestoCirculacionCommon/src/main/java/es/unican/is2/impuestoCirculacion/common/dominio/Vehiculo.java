@@ -3,6 +3,8 @@ package es.unican.is2.impuestoCirculacion.common.dominio;
 import java.io.Serializable;
 import java.time.LocalDate;
 
+import es.unican.is2.impuestoCirculacion.common.business.OperacionNoValida;
+
 
 @SuppressWarnings("serial")
 public abstract class Vehiculo implements Serializable {
@@ -10,7 +12,12 @@ public abstract class Vehiculo implements Serializable {
     private String matricula;
 	private LocalDate fechaMatriculacion;	
 
-	public Vehiculo(String matricula, LocalDate fechaMatriculacion) {
+	public Vehiculo(String matricula, LocalDate fechaMatriculacion) throws OperacionNoValida {
+		if (matricula == null) {
+			throw new NullPointerException();
+		} else if (fechaMatriculacion.isAfter(LocalDate.now())) {
+			throw new OperacionNoValida("La fecha de matriculacion es posterior a hoy.");
+		}
 		this.matricula = matricula;
 		this.fechaMatriculacion = fechaMatriculacion;
 	}
