@@ -25,7 +25,7 @@ public class FurgonetaTest {
 		
 		//C1
 		
-		assertTrue(sut.getFechaMatriculacion() == LocalDate.now().minusYears(2));
+		assertTrue(sut.getFechaMatriculacion().equals(LocalDate.now().minusYears(2)));
 		assertTrue(sut.getMatricula()=="0000ABC");
 		assertTrue(sut.getPotencia()==0.00);
 		
@@ -33,7 +33,7 @@ public class FurgonetaTest {
 		
 		sut = new Turismo("0000ABC", LocalDate.now() , 50.00);
 		
-		assertTrue(sut.getFechaMatriculacion() == LocalDate.now());
+		assertTrue(sut.getFechaMatriculacion().equals(LocalDate.now()));
 		assertTrue(sut.getMatricula()=="0000ABC");
 		assertTrue(sut.getPotencia()==50.00);
 		
@@ -62,21 +62,21 @@ public class FurgonetaTest {
 		try {
 			sut = new Turismo("0000ABC", LocalDate.now().plusYears(10) , 50.00);
 			fail("Debe fallar si la fecha de matriculacion es posterior al dia actual");
-		} catch (NullPointerException e) {
+		} catch (OperacionNoValida e) {
 		}	
 		
 		//C4
 		try {
 			sut = new Turismo("0000ABC", LocalDate.now() , -900);
-			fail("Debe fallar si la matricula es NULL");
-		} catch (NullPointerException e) {
+			fail("Debe fallar si la potencia es negativa");
+		} catch (OperacionNoValida e) {
 		}	
 		
 		//C5
 		try {
-			sut = new Turismo(null, LocalDate.now().minusYears(2) , 50.00);
-			fail("Debe fallar si la matricula es NULL");
-		} catch (NullPointerException e) {
+			sut = new Turismo("0000ABC", LocalDate.now().minusYears(2) , -0.01);
+			fail("Debe fallar si la potencia es negativa.");
+		} catch (OperacionNoValida e) {
 		}	
 		
 	}
