@@ -19,10 +19,7 @@ public class Turismo
 			throw new OperacionNoValida("La potencia no puede ser negativa.");
 		}
 		this.potencia = potencia;
-		//Caso Matriculado en el futuro
-		if (LocalDate.now().isBefore(fechaMatriculacion)) {
-			throw new OperacionNoValida("La fecha de matriculacion no puede ser posterior a hoy");
-		}
+		//Caso Matriculado en el futuro ya tratado en Superclase
 	}
 
 

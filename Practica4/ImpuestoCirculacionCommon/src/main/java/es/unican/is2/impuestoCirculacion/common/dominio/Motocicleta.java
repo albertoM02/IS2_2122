@@ -13,7 +13,7 @@ public class Motocicleta extends Vehiculo
 	public Motocicleta(String matricula, LocalDate fechaMatriculacion, int cilindrada) throws OperacionNoValida {
 		super(matricula, fechaMatriculacion);
 		if (cilindrada < 0) {
-			throw new OperacionNoValida("La potencia no puede ser negativa.");
+			throw new OperacionNoValida("La cilindrada no puede ser negativa.");
 		}
 		this.cilindrada = cilindrada;
 	}

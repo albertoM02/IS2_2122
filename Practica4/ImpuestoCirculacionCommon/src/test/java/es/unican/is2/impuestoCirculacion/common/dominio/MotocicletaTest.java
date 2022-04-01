@@ -12,11 +12,11 @@ import es.unican.is2.impuestoCirculacion.common.business.OperacionNoValida;
 public class MotocicletaTest {
 
 	//Objeto para realizar las pruebas
-	private Turismo sut;
+	private Motocicleta sut;
 	
 	@Before
 	public void setUp() throws OperacionNoValida {
-		sut = new Turismo("0000ABC", LocalDate.now().minusYears(2) , 0); 
+		sut = new Motocicleta("0000ABC", LocalDate.now().minusYears(2) , 0); 
 	}
 
 	@Test
@@ -27,15 +27,15 @@ public class MotocicletaTest {
 		
 		assertTrue(sut.getFechaMatriculacion().equals(LocalDate.now().minusYears(2)));
 		assertTrue(sut.getMatricula()=="0000ABC");
-		assertTrue(sut.getPotencia()==0);
+		assertTrue(sut.getCilindrada()==0);
 		
 		//C2
 		
-		sut = new Turismo("0000ABC", LocalDate.now() , 50);
+		sut = new Motocicleta("0000ABC", LocalDate.now() , 50);
 		
 		assertTrue(sut.getFechaMatriculacion().equals(LocalDate.now()));
 		assertTrue(sut.getMatricula()=="0000ABC");
-		assertTrue(sut.getPotencia()==50);
+		assertTrue(sut.getCilindrada()==50);
 		
 		//Casos No Validos
 		
@@ -43,7 +43,7 @@ public class MotocicletaTest {
 		//C1
 		
 		try {
-			sut = new Turismo(null, LocalDate.now().minusYears(2) , 50);
+			sut = new Motocicleta(null, LocalDate.now().minusYears(2) , 50);
 			fail("Debe fallar si la matricula es NULL");
 		} catch (NullPointerException e) {
 		}	
@@ -52,7 +52,7 @@ public class MotocicletaTest {
 		//C2
 		
 		try {
-			sut = new Turismo("0000ABC", LocalDate.now().plusDays(1) , 50);
+			sut = new Motocicleta("0000ABC", LocalDate.now().plusDays(1) , 50);
 			fail("Debe fallar si la fecha de matriculacion es posterior al dia actual");
 		} catch (OperacionNoValida e) {
 		}	
@@ -60,21 +60,21 @@ public class MotocicletaTest {
 		//C3
 		
 		try {
-			sut = new Turismo("0000ABC", LocalDate.now().plusYears(10) , 50);
+			sut = new Motocicleta("0000ABC", LocalDate.now().plusYears(10) , 50);
 			fail("Debe fallar si la fecha de matriculacion es posterior al dia actual.");
 		} catch (OperacionNoValida e) {
 		}	
 		
 		//C4
 		try {
-			sut = new Turismo("0000ABC", LocalDate.now() , -900);
+			sut = new Motocicleta("0000ABC", LocalDate.now() , -900);
 			fail("Debe fallar si la potencia es negativa.");
 		} catch (OperacionNoValida e) {
 		}	
 		
 		//C5
 		try {
-			sut = new Turismo("0000ABC", LocalDate.now().minusYears(2) , -1);
+			sut = new Motocicleta("0000ABC", LocalDate.now().minusYears(2) , -1);
 			fail("Debe fallar si la potencia es negativa.");
 		} catch (OperacionNoValida e) {
 		}	

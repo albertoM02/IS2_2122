@@ -15,7 +15,7 @@ public class Furgoneta
 	private double potencia;
     private boolean comercial;
     
-    public Furgoneta(String matricula, LocalDate fechaMatriculacion, double potencia) throws OperacionNoValida {
+    public Furgoneta(String matricula, LocalDate fechaMatriculacion, double potencia, boolean comercial) throws OperacionNoValida {
 		super(matricula, fechaMatriculacion, potencia);
 	}
     
@@ -53,11 +53,11 @@ public class Furgoneta
 		}
 		if (potencia < 8.00) {
 			return 25.24 * bonificacion;
-		} else if (potencia >= 8.00 && potencia <= 11.99) {
+		} else if (potencia >= 8.00 && potencia < 12.00) {
 			return 68.16 * bonificacion;
-		} else if (potencia >= 12.00 && potencia <= 15.99 ) {
+		} else if (potencia >= 12.00 && potencia < 16.00 ) {
 			return 143.88 * bonificacion;
-		} else if (potencia >= 16.00 && potencia <=19.99) {
+		} else if (potencia >= 16.00 && potencia < 20.00) {
 			return 179.22 * bonificacion;
 		} else if (potencia >= 20.00) {
 			return 224.00 * bonificacion;

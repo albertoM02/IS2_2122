@@ -83,35 +83,61 @@ public class TurismoTest {
 	
 	@Test
 	public void testPrecioImpuestoTurismo() throws OperacionNoValida {
+		//C1
+		sut = new Turismo("0000ABC", LocalDate.now().minusYears(25) , 10.00);
+		assertTrue(sut.precioImpuesto()==0.00);
 		
-		// C1
+		//C2
+		sut = new Turismo("0000ABC", LocalDate.now().minusYears(50) , 14.00);
+		assertTrue(sut.precioImpuesto()==0.00);
 		
-		sut = new Turismo("0000ABC", LocalDate.now().minusYears(25) , 50.00);
-		assertTrue(sut.precioImpuesto() == 0.0);
+		//C3
+		sut = new Turismo("0000ABC", LocalDate.now().minusYears(25).plusDays(1) , 0.00);
+		assertTrue(sut.precioImpuesto()==25.24);
 		
-		// C2
+		//C4
+		sut = new Turismo("0000ABC", LocalDate.now().minusYears(13) , 4.00);
+		assertTrue(sut.precioImpuesto()==25.24);
 		
-		sut = new Turismo("0000ABC", LocalDate.now() , 5.00);
-		assertTrue(sut.precioImpuesto() == 25.24);
+		//C5
+		sut = new Turismo("0000ABC", LocalDate.now() , 7.99);
+		assertTrue(sut.precioImpuesto()==25.24);
 		
-		// C3
+		//C6
+		sut = new Turismo("0000ABC", LocalDate.now().minusYears(13) , 8.00);
+		assertTrue(sut.precioImpuesto()==68.16);
 		
-		sut = new Turismo("0000ABC", LocalDate.now() , 10.00);
-		assertTrue(sut.precioImpuesto() == 68.16);
+		//C7
+		sut = new Turismo("0000ABC", LocalDate.now().minusYears(13) , 11.99);
+		assertTrue(sut.precioImpuesto()==68.16);
 		
-		// C4
+		//C8
+		sut = new Turismo("0000ABC", LocalDate.now().minusYears(13) , 12.00);
+		assertTrue(sut.precioImpuesto()==143.88);
 		
-		sut = new Turismo("0000ABC", LocalDate.now() , 13.00);
-		assertTrue(sut.precioImpuesto() == 143.88);
+		//C9
+		sut = new Turismo("0000ABC", LocalDate.now().minusYears(13) , 15.99);
+		assertTrue(sut.precioImpuesto()==143.88);
 		
-		// C5
+		//C10
+		sut = new Turismo("0000ABC", LocalDate.now().minusYears(13) , 16.00);
+		assertTrue(sut.precioImpuesto()==179.22);
 		
-		sut = new Turismo("0000ABC", LocalDate.now() , 18.00);
-		assertTrue(sut.precioImpuesto() == 179.22);
+		//C11
+		sut = new Turismo("0000ABC", LocalDate.now().minusYears(13) , 18.00);
+		assertTrue(sut.precioImpuesto()==179.22);
 		
-		// C6
+		//C12
+		sut = new Turismo("0000ABC", LocalDate.now().minusYears(13) , 19.99);
+		assertTrue(sut.precioImpuesto()==179.22);
 		
-		sut = new Turismo("0000ABC", LocalDate.now() , 40.00);
-		assertTrue(sut.precioImpuesto() == 224.00);
+		//C13
+		sut = new Turismo("0000ABC", LocalDate.now().minusYears(13) , 20.00);
+		assertTrue(sut.precioImpuesto()==224.00);
+		
+		//C14
+		sut = new Turismo("0000ABC", LocalDate.now().minusYears(13) , 55.82);
+		assertTrue(sut.precioImpuesto()==224.00);
+
 	}
 }

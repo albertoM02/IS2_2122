@@ -16,7 +16,7 @@ public class FurgonetaTest {
 	
 	@Before
 	public void setUp() throws OperacionNoValida {
-		sut = new Turismo("0000ABC", LocalDate.now().minusYears(2) , 0.00); 
+		sut = new Furgoneta("0000ABC", LocalDate.now().minusYears(2) , 0.00, false); 
 	}
 
 	@Test
@@ -43,7 +43,7 @@ public class FurgonetaTest {
 		//C1
 		
 		try {
-			sut = new Turismo(null, LocalDate.now().minusYears(2) , 50.00);
+			sut = new Furgoneta(null, LocalDate.now().minusYears(2) , 50.00, false);
 			fail("Debe fallar si la matricula es NULL");
 		} catch (NullPointerException e) {
 		}	
@@ -52,7 +52,7 @@ public class FurgonetaTest {
 		//C2
 		
 		try {
-			sut = new Turismo("0000ABC", LocalDate.now().plusDays(1) , 50.00);
+			sut = new Furgoneta("0000ABC", LocalDate.now().plusDays(1) , 50.00, false);
 			fail("Debe fallar si la fecha de matriculacion es posterior al dia actual");
 		} catch (OperacionNoValida e) {
 		}	
@@ -60,21 +60,21 @@ public class FurgonetaTest {
 		//C3
 		
 		try {
-			sut = new Turismo("0000ABC", LocalDate.now().plusYears(10) , 50.00);
+			sut = new Furgoneta("0000ABC", LocalDate.now().plusYears(10) , 50.00, false);
 			fail("Debe fallar si la fecha de matriculacion es posterior al dia actual");
 		} catch (OperacionNoValida e) {
 		}	
 		
 		//C4
 		try {
-			sut = new Turismo("0000ABC", LocalDate.now() , -900);
+			sut = new Furgoneta("0000ABC", LocalDate.now() , -900, false);
 			fail("Debe fallar si la potencia es negativa");
 		} catch (OperacionNoValida e) {
 		}	
 		
 		//C5
 		try {
-			sut = new Turismo("0000ABC", LocalDate.now().minusYears(2) , -0.01);
+			sut = new Furgoneta("0000ABC", LocalDate.now().minusYears(2) , -0.01, false);
 			fail("Debe fallar si la potencia es negativa.");
 		} catch (OperacionNoValida e) {
 		}	
