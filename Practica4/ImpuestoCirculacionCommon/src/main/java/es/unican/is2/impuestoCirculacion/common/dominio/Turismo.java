@@ -46,17 +46,15 @@ public class Turismo
 		}
 		if (potencia < 8.00) {
 			return 25.24;
-		} else if (potencia >= 8.00 && potencia <= 11.99) {
+		} else if (potencia <= 11.99) {
 			return 68.16;
-		} else if (potencia >= 12.00 && potencia <= 15.99 ) {
+		} else if (potencia <= 15.99 ) {
 			return 143.88;
-		} else if (potencia >= 16.00 && potencia <=19.99) {
+		} else if (potencia <=19.99) {
 			return 179.22;
-		} else if (potencia >= 20.00) {
+		} else {
 			return 224.00;
 		}
-		//error
-		return -1;
     }
     
 }

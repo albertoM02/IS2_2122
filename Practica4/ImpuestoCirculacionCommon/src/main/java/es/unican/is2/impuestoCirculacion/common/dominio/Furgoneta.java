@@ -43,17 +43,15 @@ public class Furgoneta
 		}
 		if (potencia < 8.00) {
 			return 25.24 * bonificacion;
-		} else if (potencia >= 8.00 && potencia < 12.00) {
+		} else if (potencia < 12.00) {
 			return 68.16 * bonificacion;
-		} else if (potencia >= 12.00 && potencia < 16.00 ) {
+		} else if (potencia < 16.00 ) {
 			return 143.88 * bonificacion;
-		} else if (potencia >= 16.00 && potencia < 20.00) {
+		} else if (potencia < 20.00) {
 			return 179.22 * bonificacion;
-		} else if (potencia >= 20.00) {
+		} else {
 			return 224.00 * bonificacion;
 		}
-		//error
-		return -1;
-    	
+
     }
 }
