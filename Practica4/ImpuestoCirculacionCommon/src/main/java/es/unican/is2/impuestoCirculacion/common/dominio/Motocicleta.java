@@ -35,7 +35,7 @@ public class Motocicleta extends Vehiculo
 		LocalDate fechaMatriculacion = this.getFechaMatriculacion();
 	    LocalDate actualidad = LocalDate.now();
 	    Period diferenciaTiempo = Period.between(fechaMatriculacion, actualidad);
-		if(diferenciaTiempo.getYears() > 25) {
+		if(diferenciaTiempo.getYears() >= 25) {
 			return 0.0; //Caso vehiculos viejos no pagan.
 		}
 		if (cilindrada <= 125) {

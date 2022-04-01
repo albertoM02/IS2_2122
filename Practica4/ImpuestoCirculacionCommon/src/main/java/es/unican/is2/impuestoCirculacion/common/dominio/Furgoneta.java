@@ -10,13 +10,11 @@ public class Furgoneta
 {
     
 
-
-
-	private double potencia;
     private boolean comercial;
     
     public Furgoneta(String matricula, LocalDate fechaMatriculacion, double potencia, boolean comercial) throws OperacionNoValida {
 		super(matricula, fechaMatriculacion, potencia);
+		this.comercial = comercial;
 	}
     
    /**
@@ -27,28 +25,20 @@ public class Furgoneta
     public boolean getComercial() {
     	return comercial;
     }
-    
-    /**
-	 * Retorna la potencia de la furgoneta
-	 * @return potencia en caballos fiscales
-	 */
-    public double getPotencia() {
-        return potencia;
-    }
-    
-  
+        
 	@Override
     public double precioImpuesto() {
 		LocalDate fechaMatriculacion = this.getFechaMatriculacion();
 	    LocalDate actualidad = LocalDate.now();
 	    Period diferenciaTiempo = Period.between(fechaMatriculacion, actualidad);
-	    double bonificacion = 1.00;
+	    double bonificacion = 1;
+	    double potencia = this.getPotencia();
 	    //Caso vehiculo comercial
 	    if (comercial == true) {
 	    	//Si son comerciales pagan el 80% (bonificacion del 20%)
 	    	bonificacion = 0.80;
 	    }
-		if(diferenciaTiempo.getYears() > 25) {
+		if(diferenciaTiempo.getYears() >= 25) {
 			return 0.0; //Caso vehiculos viejos no pagan.
 		}
 		if (potencia < 8.00) {
