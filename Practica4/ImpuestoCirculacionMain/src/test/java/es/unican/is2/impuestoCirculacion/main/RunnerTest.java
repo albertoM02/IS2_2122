@@ -41,7 +41,7 @@ public class RunnerTest {
 	public void test() {
 		// Comprobacion de aspectos de interfaz.
 		demo.button("btnBuscar").requireText("Buscar");
-		
+		demo.label("lblDniContribuyente").requireText("DNI Contribuyente");
 		//Prueba de correcto funcionamiento.
 		
 		//Introducimos el DNI del primer contribuyente
@@ -49,18 +49,24 @@ public class RunnerTest {
 		demo.button("btnBuscar").click();
 		demo.textBox("txtNombreContribuyente").requireText("Pepe López Martínez");
 		demo.textBox("txtTotalContribuyente").requireText("448.0");
+		demo.list("listMatriculasVehiculos").requireItemCount(2);
+
 		
 		demo.textBox("txtDniContribuyente").deleteText();
 		demo.textBox("txtDniContribuyente").enterText("22222222B");
 		demo.button("btnBuscar").click();
 		demo.textBox("txtNombreContribuyente").requireText("Ana Pérez López");
-		demo.textBox("txtTotalContribuyente").requireText("8.84");	
+		demo.textBox("txtTotalContribuyente").requireText("8.84");
+		demo.list("listMatriculasVehiculos").requireItemCount(2);
+
 		
 		demo.textBox("txtDniContribuyente").deleteText();
 		demo.textBox("txtDniContribuyente").enterText("33333333C");
 		demo.button("btnBuscar").click();
 		demo.textBox("txtNombreContribuyente").requireText("Luis Toca Pérez");
 		demo.textBox("txtTotalContribuyente").requireText("249.24");
+		demo.list("listMatriculasVehiculos").requireItemCount(2);
+
 		
 		try {
 			Thread.sleep(2000);
