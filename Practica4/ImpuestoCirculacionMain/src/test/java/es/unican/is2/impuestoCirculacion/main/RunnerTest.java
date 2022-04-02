@@ -44,14 +44,23 @@ public class RunnerTest {
 		demo.label("lblDniContribuyente").requireText("DNI Contribuyente");
 		//Prueba de correcto funcionamiento.
 		
-		//Introducimos el DNI del primer contribuyente
+		// Probamos el primer contribuyente.
+		
+		//Probamos el dni del primer contribuyente.
 		demo.textBox("txtDniContribuyente").enterText("11111111A");
 		demo.button("btnBuscar").click();
+		
+		//Comprobamos que hay retornado el nombre correcto.
 		demo.textBox("txtNombreContribuyente").requireText("Pepe López Martínez");
+		
+		//Comprobamos que devuelva el precio a pagar correcto.
 		demo.textBox("txtTotalContribuyente").requireText("448.0");
+		
+		//Comprobamos que muestre la cantidad de vehiculos correcta.
 		demo.list("listMatriculasVehiculos").requireItemCount(2);
 
 		
+		//Repterimos con el segundo contribuyente.
 		demo.textBox("txtDniContribuyente").deleteText();
 		demo.textBox("txtDniContribuyente").enterText("22222222B");
 		demo.button("btnBuscar").click();
@@ -59,7 +68,8 @@ public class RunnerTest {
 		demo.textBox("txtTotalContribuyente").requireText("8.84");
 		demo.list("listMatriculasVehiculos").requireItemCount(2);
 
-		
+		//Repterimos con el tercer contribuyente.
+
 		demo.textBox("txtDniContribuyente").deleteText();
 		demo.textBox("txtDniContribuyente").enterText("33333333C");
 		demo.button("btnBuscar").click();
@@ -67,7 +77,7 @@ public class RunnerTest {
 		demo.textBox("txtTotalContribuyente").requireText("249.24");
 		demo.list("listMatriculasVehiculos").requireItemCount(2);
 
-		
+		//Para poder observar la realización de los test.
 		try {
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {
