@@ -122,7 +122,8 @@ public class VistaFuncionario extends JFrame {
 		Contribuyente c = info.contribuyente(dni);
 		if (c != null) {
 			txtNombreContribuyente.setText(c.getNombre() + " " + c.getApellido1() + " " + c.getApellido2());
-			txtTotalContribuyente.setText(c.getNombre());
+			//txtTotalContribuyente.setText(c.getNombre());
+			txtTotalContribuyente.setText(String.valueOf(c.totalAPagar()));
 			listModel.removeAllElements();
 			for (int i = 0; i < c.getVehiculos().size() - 1; i++) {
 				Vehiculo v = c.getVehiculos().get(i);
