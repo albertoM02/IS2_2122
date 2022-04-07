@@ -16,24 +16,29 @@ public class GestionImpuestoCirculacion implements IGestionContribuyentes, IGest
 	}
 	
 	public Contribuyente altaContribuyente(Contribuyente c) {
+		// Comprobamos si el contribuyente ya existe.
+		if (contribuyentes.contribuyente(c.getDni()) != null) {
+			return null;
+		}
 		contribuyentes.creaContribuyente(c);
 		return c;
 	}
 
 	
 	public Contribuyente bajaContribuyente(String dni) throws OperacionNoValida {
-		
-		Contribuyente cExiste = contribuyentes.eliminaContribuyente(dni);
-		
+				
+		Contribuyente cExiste = contribuyentes.contribuyente(dni);
 		if (cExiste == null) {
 			//Caso contribuyente no existe
 			return null;
 		}
 		if (cExiste.getVehiculos().isEmpty() == false) {
 			throw new OperacionNoValida("El contribuyente tiene coches a su nombre.");
-		} else {
+		} else { // Elimina el contribuyente.
+			contribuyentes.eliminaContribuyente(dni);
 			return cExiste;
 		}
+		
 		
 	 }
 	
@@ -44,19 +49,18 @@ public class GestionImpuestoCirculacion implements IGestionContribuyentes, IGest
 	
 
 	public Vehiculo altaVehiculo(Vehiculo v, String dni) throws OperacionNoValida {
-		Contribuyente c = contribuyentes.contribuyente(dni);
-		if (c == null) {
+		Contribuyente co = contribuyentes.contribuyente(dni);
+		if (co == null) {
 			//Caso no existe el contribuyente.
 			return null;
 		}
-		if (vehiculos.vehiculo(v.getMatricula()) == null) {
-			//caso no existe vehículo
-			return null;
-		}
-		if (c.getVehiculos().contains(v)) {
-			throw new OperacionNoValida("El contribuyente ya posee este coche.");
+		//Comprobamos que el vehículo
+		if (vehiculos.vehiculo(v.getMatricula()) != null) {
+			throw new OperacionNoValida("El vehiculo ya existe.");
 		} else {
-			c.getVehiculos().add(v);
+			co.getVehiculos().add(v);
+			vehiculos.creaVehiculo(v);
+			contribuyentes.actualizaContribuyente(co);
 		}
 		return v;
 	}
@@ -76,7 +80,9 @@ public class GestionImpuestoCirculacion implements IGestionContribuyentes, IGest
 			return null;
 		}
 		if (c.getVehiculos().contains(vBaja)) {
+			vehiculos.eliminaVehiculo(matricula);
 			c.getVehiculos().remove(vBaja);
+			contribuyentes.actualizaContribuyente(c);
 			return vBaja;
 		} else {
 			throw new OperacionNoValida("El contribuyente no posee ese vehiculo.");

@@ -57,16 +57,19 @@ public class RunnerTest {
 		demo.textBox("txtTotalContribuyente").requireText("448.0");
 		
 		//Comprobamos que muestre la cantidad de vehiculos correcta.
+		String[] matriculasList = demo.list("listMatriculasVehiculos").contents();
+		assertEquals(matriculasList[0], "1111-AAA");
+		assertEquals(matriculasList[1], "1111-BBB");
 		demo.list("listMatriculasVehiculos").requireItemCount(2);
-
 		
 		//Repterimos con el segundo contribuyente.
 		demo.textBox("txtDniContribuyente").deleteText();
 		demo.textBox("txtDniContribuyente").enterText("22222222B");
 		demo.button("btnBuscar").click();
 		demo.textBox("txtNombreContribuyente").requireText("Ana Pérez López");
-		demo.textBox("txtTotalContribuyente").requireText("8.84");
-		demo.list("listMatriculasVehiculos").requireItemCount(2);
+		demo.textBox("txtTotalContribuyente").requireText("0.0");
+		demo.list("listMatriculasVehiculos").requireItemCount(0);
+		demo.list("listMatriculasVehiculos").contents();
 
 		//Repterimos con el tercer contribuyente.
 
@@ -76,13 +79,17 @@ public class RunnerTest {
 		demo.textBox("txtNombreContribuyente").requireText("Luis Toca Pérez");
 		demo.textBox("txtTotalContribuyente").requireText("249.24");
 		demo.list("listMatriculasVehiculos").requireItemCount(2);
+		
+		//Probamos el caso con un DNI no válido.
+
+		demo.textBox("txtDniContribuyente").deleteText();
+		demo.textBox("txtDniContribuyente").enterText("00000000O");
+		demo.button("btnBuscar").click();
+		demo.textBox("txtNombreContribuyente").requireText("DNI No Válido");
+		demo.textBox("txtTotalContribuyente").requireText("0");
+		demo.list("listMatriculasVehiculos").requireItemCount(0);
 
 		//Para poder observar la realización de los test.
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
 	}
 
 }

@@ -45,5 +45,20 @@ public abstract class Vehiculo implements Serializable {
 	public LocalDate getFechaMatriculacion() {
 		return fechaMatriculacion;
 	}
+	
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true; //Si son el mismo elemento exacto
+        if (o == null) return false;
+        if (o.getClass() != this.getClass()) {
+        	return false; //es de otra clase
+        }
+        if (((Vehiculo)o).matricula == this.matricula) {
+        	return true; //es el mismo objeto
+        }
+			
+		return false;
+		
+	}
 
 }
