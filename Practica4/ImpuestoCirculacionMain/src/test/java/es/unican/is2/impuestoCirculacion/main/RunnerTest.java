@@ -57,21 +57,26 @@ public class RunnerTest {
 		demo.textBox("txtTotalContribuyente").requireText("448.0");
 		
 		//Comprobamos que muestre la cantidad de vehiculos correcta.
+		demo.list("listMatriculasVehiculos").requireItemCount(2);
+		
+		//Y ahora que las matriculas sean las correctas.
 		String[] matriculasList = demo.list("listMatriculasVehiculos").contents();
 		assertEquals(matriculasList[0], "1111-AAA");
 		assertEquals(matriculasList[1], "1111-BBB");
-		demo.list("listMatriculasVehiculos").requireItemCount(2);
+
 		
-		//Repterimos con el segundo contribuyente.
+		//Repetiremos con el segundo contribuyente.
 		demo.textBox("txtDniContribuyente").deleteText();
 		demo.textBox("txtDniContribuyente").enterText("22222222B");
 		demo.button("btnBuscar").click();
 		demo.textBox("txtNombreContribuyente").requireText("Ana Pérez López");
 		demo.textBox("txtTotalContribuyente").requireText("0.0");
+		//Comprobamos la cantidad de vehículos.
 		demo.list("listMatriculasVehiculos").requireItemCount(0);
-		demo.list("listMatriculasVehiculos").contents();
-
-		//Repterimos con el tercer contribuyente.
+		//Y ahora que las matriculas sean las correctas.
+		matriculasList = demo.list("listMatriculasVehiculos").contents();
+		assertEquals(matriculasList.length, 0);
+		//Repetiremos con el tercer contribuyente.
 
 		demo.textBox("txtDniContribuyente").deleteText();
 		demo.textBox("txtDniContribuyente").enterText("33333333C");
