@@ -1,4 +1,4 @@
-package es.unican.is2.ListaOrdenadaAcotada;
+package es.unican.is2.listaOrdenadaAcotada;
 /**
  * Interfaz correspondiente a una lista ordenada 
  * con capacidad limitada
