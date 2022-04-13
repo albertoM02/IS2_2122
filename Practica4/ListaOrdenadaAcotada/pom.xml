@@ -17,11 +17,13 @@
 			<artifactId>junit</artifactId>
 			<version>4.8.2</version>
 		</dependency>
+		<!--
 		<dependency>
 			<groupId>es.unican.is2</groupId>
 			<artifactId>ListaOrdenadaAcotada</artifactId>
 			<version>1.0</version>
 		</dependency>
+		-->
 	</dependencies>
 	<properties>
 		<maven.compiler.source>17</maven.compiler.source>
