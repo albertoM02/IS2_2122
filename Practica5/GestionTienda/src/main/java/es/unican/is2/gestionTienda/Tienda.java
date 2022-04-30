@@ -229,7 +229,7 @@ public class Tienda {
 				ven.setT(totalVentas);
 				lista.add(ven);
 			}
-			while (in.hasNext()) { //WMC + 1 //CCog + 2
+			while (in.hasNext()) { //WMC + 1 //CCog + 1
 				in.next();
 				String nombre = in.next();
 				in.next();
@@ -245,7 +245,7 @@ public class Tienda {
 		} catch (FileNotFoundException e) {
 
 		} finally {
-			if (in != null) { //WMC + 1
+			if (in != null) { //WMC + 1 //CCog + 1
 				in.close();
 			}
 		} // try
@@ -310,5 +310,5 @@ public class Tienda {
 		}
 	}
 
-	// WMC = 37 //WMCn = 37/9 = 4'11... 
+	// WMC = 37 //WMCn = 37/9 = 4'11... //CCog = 31
 }

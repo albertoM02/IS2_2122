@@ -4,7 +4,7 @@ package es.unican.is2.gestionTienda;
  * que existen en la tienda
  *
  */
-public enum TipoVendedor {
+public enum TipoVendedor { //CCog y WMC 0
 	
 	JUNIOR, SENIOR
 
