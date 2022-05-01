@@ -51,7 +51,7 @@ public abstract class Vendedor {
 	 * Se utiliza para poder cargar los datos desde fichero
 	 * @param Total de ventas
 	 */
-	public void setT(double totalVentas) { //WMC + 1
+	public void setTotalVentas(double totalVentas) { //WMC + 1
 		this.t = totalVentas;
 	}
 	

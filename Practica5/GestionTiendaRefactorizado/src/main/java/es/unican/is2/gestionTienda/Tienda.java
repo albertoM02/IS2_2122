@@ -18,6 +18,8 @@ import java.util.Scanner;
  */
 public class Tienda {
 
+	private static final double BonusSenior = 0.01;
+	private static final double BonusJunior = 0.005;
 	private LinkedList<Vendedor> lista = new LinkedList<Vendedor>();
 	private String direccion;
 	private String nombre;
@@ -99,10 +101,10 @@ public class Tienda {
 		if (v instanceof VendedorEnPlantilla) { //WMC + 1 //CCog + 1
 			switch (((VendedorEnPlantilla) v).tipo()) { //CCog + 1
 			case JUNIOR: //WMC + 1
-				importeFinal += importeFinal * 0.005;
+				importeFinal += importeFinal * BonusJunior;
 				break;
 			case SENIOR: //WMC + 1
-				importeFinal += importeFinal * 0.01;
+				importeFinal += importeFinal * BonusSenior;
 				break;
 			}
 		}
@@ -141,7 +143,7 @@ public class Tienda {
 				in.next();
 				double totalVentas = in.nextDouble();
 				ven = new VendedorEnPlantilla(nombre, idIn, dni, TipoVendedor.SENIOR);
-				ven.setT(totalVentas);
+				ven.setTotalVentas(totalVentas);
 				lista.add(ven);
 			}
 			// lee los vendedores junior
@@ -154,7 +156,7 @@ public class Tienda {
 				in.next();
 				double totalVentas = in.nextDouble();
 				ven = new VendedorEnPlantilla(nombre, idIn, dni, TipoVendedor.JUNIOR);
-				ven.setT(totalVentas);
+				ven.setTotalVentas(totalVentas);
 				lista.add(ven);
 			}
 			while (in.hasNext()) { //WMC + 1 //CCog + 1
@@ -167,7 +169,7 @@ public class Tienda {
 				in.next();
 				double totalVentas = in.nextDouble();
 				ven = new vendedorEnPracticas(nombre, idIn, dni);
-				ven.setT(totalVentas);
+				ven.setTotalVentas(totalVentas);
 				lista.add(ven);
 			}
 		} catch (FileNotFoundException e) {
@@ -213,7 +215,7 @@ public class Tienda {
 				in.next();
 				double totalVentas = in.nextDouble();
 				ven = new VendedorEnPlantilla(nombre, idIn, dni, TipoVendedor.SENIOR);
-				ven.setT(totalVentas);
+				ven.setTotalVentas(totalVentas);
 				lista.add(ven);
 			}
 			// lee los vendedores junior
@@ -226,7 +228,7 @@ public class Tienda {
 				in.next();
 				double totalVentas = in.nextDouble();
 				ven = new VendedorEnPlantilla(nombre, idIn, dni, TipoVendedor.JUNIOR);
-				ven.setT(totalVentas);
+				ven.setTotalVentas(totalVentas);
 				lista.add(ven);
 			}
 			while (in.hasNext()) { //WMC + 1 //CCog + 1
@@ -239,7 +241,7 @@ public class Tienda {
 				in.next();
 				double totalVentas = in.nextDouble();
 				ven = new vendedorEnPracticas(nombre, idIn, dni);
-				ven.setT(totalVentas);
+				ven.setTotalVentas(totalVentas);
 				lista.add(ven);
 			}
 		} catch (FileNotFoundException e) {
