@@ -261,7 +261,7 @@ public class Tienda {
 	 * con los datos actualizados de los vendedores
 	 */
 	private void vuelcaDatos() throws IOException { //WMC + 1
-		PrintWriter out = null;
+		
 		List<Vendedor> senior = new LinkedList<Vendedor>();
 		List<Vendedor> junior = new LinkedList<Vendedor>();
 		List<Vendedor> practicas = new LinkedList<Vendedor>();
@@ -278,6 +278,18 @@ public class Tienda {
 			}
 		}
 
+		muestraDatosVendedores(senior, junior, practicas);
+	}
+
+	/**
+	 * @param senior
+	 * @param junior
+	 * @param practicas
+	 * @throws IOException
+	 */
+	private void muestraDatosVendedores(List<Vendedor> senior, List<Vendedor> junior, List<Vendedor> practicas)
+			throws IOException {
+		PrintWriter out = null;
 		try {
 
 			out = new PrintWriter(new FileWriter(datos));
@@ -287,23 +299,20 @@ public class Tienda {
 			out.println();
 			out.println("Senior");
 			for (Vendedor v : senior) { //WMC + 1 //CCog + 1
-				VendedorEnPlantilla v1 = (VendedorEnPlantilla) v;
-				out.println("  Nombre: " + v1.getNombre() + " Id: " + v1.getId() + " DNI: "+ v1.getDni()+" TotalVentasMes: "
-						+ v1.getTotalVentas());
+				Vendedor v1 = (Vendedor) v;
+				v1.muestraInfoVendedor(out);
 			}
 			out.println();
 			out.println("Junior");
 			for (Vendedor v : junior) { //WMC + 1 //CCog + 1
-				VendedorEnPlantilla v2 = (VendedorEnPlantilla) v;
-				out.println("  Nombre: " + v2.getNombre() + " Id: " + v2.getId() + " DNI: "+ v2.getDni()+" TotalVentasMes: "
-						+ v2.getTotalVentas());
+				Vendedor v2 = (Vendedor) v;
+				v2.muestraInfoVendedor(out);
 			}
 			out.println();
 			out.println("Prácticas");
 			for (Vendedor v : practicas) { //WMC + 1 //CCog + 1
 				vendedorEnPracticas v3 = (vendedorEnPracticas) v;
-				out.println("  Nombre: " + v3.getNombre() + " Id: " + v3.getId() + " DNI: "+ v3.getDni()+" TotalVentasMes: "
-						+ v3.getTotalVentas());
+				v3.muestraInfoVendedor(out);
 			}
 
 		} finally {

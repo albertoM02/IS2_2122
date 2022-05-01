@@ -1,5 +1,6 @@
 package es.unican.is2.gestionTienda;
 
+import java.io.PrintWriter;
 
 /**
  * Vendedor de la tienda. 
@@ -14,10 +15,12 @@ public abstract class Vendedor {
 	
 	// Valor total de las ventas mensuales realizadas por el vendedor
 	private double t;
+	private String dni;
 	
-	public Vendedor(String nombre, String id) { //WMC + 1
+	public Vendedor(String nombre, String id, String dni) { //WMC + 1
 		this.nombre = nombre;
 		this.id = id;
+		this.dni = dni;
 	}
 	
 
@@ -61,6 +64,24 @@ public abstract class Vendedor {
 	 */
 	public void anhade(double importe){ //WMC + 1
 		t += importe;
+	}
+
+
+	/**
+	 * Obtiene el dni del vendedor
+	 * @return dni del vendedor
+	 */
+	public String getDni() { //WMC + 1
+		return dni;
+	}
+	
+	/**
+	 * Muestra en un archivo out, la información referente al vendedor.
+	 * @param out archivo en el que se mostrará la información
+	 */
+	public void muestraInfoVendedor(PrintWriter out) {
+		out.println("  Nombre: " + this.getNombre() + " Id: " + this.getId() + " DNI: "+ this.getDni()+" TotalVentasMes: "
+				+ this.getTotalVentas());
 	}
 	
 	//WMC = 6 //WMCn = 6/6 = 1 //CCog = 0
