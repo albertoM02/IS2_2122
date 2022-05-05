@@ -30,4 +30,4 @@ public class VendedorEnPlantilla extends Vendedor {
 
 }
 
-//WMC = 6 //WMCn = 6/4 = 1.5 //CCog = 2
+//WMC = 5 //WMCn = 5/4 = 1.25 //CCog = 2

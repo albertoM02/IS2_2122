@@ -97,7 +97,7 @@ public class Tienda {
 		}
 		double importeFinal = importe;
 		if (v instanceof VendedorEnPlantilla) { //WMC + 1 //CCog + 1
-			switch (((VendedorEnPlantilla) v).tipo()) { //CCog + 1
+			switch (((VendedorEnPlantilla) v).tipo()) { //CCog + 2
 			case JUNIOR: //WMC + 1
 				importeFinal += importeFinal * 0.005;
 				break;
@@ -170,15 +170,15 @@ public class Tienda {
 				ven.setT(totalVentas);
 				lista.add(ven);
 			}
-		} catch (FileNotFoundException e) {
+		} catch (FileNotFoundException e) { //CCog + 1 
 		} finally {
 			if (in != null) { //WMC + 1 //CCog + 1
 				in.close();
 			}
 		} // try
 
-		for (Vendedor v : lista) { //WMC + 1
-			if (v.getId().equals(id)) { //WMC + 1 //CCog + 1
+		for (Vendedor v : lista) { //WMC + 1 CCog + 1
+			if (v.getId().equals(id)) { //WMC + 1 //CCog + 2
 				return v;
 			}
 		}
@@ -242,7 +242,7 @@ public class Tienda {
 				ven.setT(totalVentas);
 				lista.add(ven);
 			}
-		} catch (FileNotFoundException e) {
+		} catch (FileNotFoundException e) { //CCog + 1
 
 		} finally {
 			if (in != null) { //WMC + 1 //CCog + 1
@@ -267,7 +267,7 @@ public class Tienda {
 		for (Vendedor v : lista) { //WMC + 1 //CCog + 1
 			if (v instanceof vendedorEnPracticas) { //WMC + 1 //CCog + 2
 				practicas.add(v);
-			} else if (v instanceof VendedorEnPlantilla) { //WMC + 1 //CCog + 2
+			} else if (v instanceof VendedorEnPlantilla) { //WMC + 1 //CCog + 1
 				VendedorEnPlantilla vp = (VendedorEnPlantilla) v;
 				if (vp.tipo().equals(TipoVendedor.JUNIOR)) //WMC + 1 //CCog + 3
 					junior.add(vp);
@@ -310,5 +310,5 @@ public class Tienda {
 		}
 	}
 
-	// WMC = 37 //WMCn = 37/9 = 4'11... //CCog = 31
+	// WMC = 37 //WMCn = 37/9 = 4'11... //CCog = 35
 }
