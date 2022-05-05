@@ -132,47 +132,10 @@ public class Tienda {
 			direccion = in.nextLine();
 			in.next();
 			Vendedor ven = null;
-			// lee los vendedores senior
-			while (in.hasNext() && !in.next().equals("Junior")) { //WMC + 2 //CCog + 2
-
-				String nombre = in.next();
-				in.next();
-				String idIn = in.next();
-				in.next();
-				String dni= in.next();
-				in.next();
-				double totalVentas = in.nextDouble();
-				ven = new VendedorEnPlantilla(nombre, idIn, dni, TipoVendedor.SENIOR);
-				ven.setTotalVentas(totalVentas);
-				lista.add(ven);
-			}
+			leeSenior(in);
 			// lee los vendedores junior
-			while (in.hasNext() && !in.next().equals("Prácticas")) { //WMC + 2 //CCog + 2
-				String nombre = in.next();
-				in.next();
-				String idIn = in.next();
-				in.next();
-				String dni= in.next();
-				in.next();
-				double totalVentas = in.nextDouble();
-				ven = new VendedorEnPlantilla(nombre, idIn, dni, TipoVendedor.JUNIOR);
-				ven.setTotalVentas(totalVentas);
-				lista.add(ven);
-			}
-			while (in.hasNext()) { //WMC + 1 //CCog + 1
-				in.next();
-				String nombre = in.next();
-				in.next();
-				String idIn = in.next();
-				in.next();
-				String dni= in.next();
-				in.next();
-				double totalVentas = in.nextDouble();
-				ven = new vendedorEnPracticas(nombre, idIn, dni);
-				ven.setTotalVentas(totalVentas);
-				lista.add(ven);
-			}
-		} catch (FileNotFoundException e) {
+			leeJunior(in);
+		} catch (FileNotFoundException e) { //CCog + 1
 		} finally {
 			if (in != null) { //WMC + 1 //CCog + 1
 				in.close();
@@ -180,11 +143,45 @@ public class Tienda {
 		} // try
 
 		for (Vendedor v : lista) { //WMC + 1
-			if (v.getId().equals(id)) { //WMC + 1 //CCog + 1
+			if (v.getId().equals(id)) { //WMC + 1 //CCog + 2
 				return v;
 			}
 		}
 		return null;
+	}
+
+	/**
+	 * Lee los vendedores junior del fichero pasado en función al formato
+	 * del usado particularmente en esta práctica.
+	 * @param in
+	 */
+	private void leeJunior(Scanner in) {
+		Vendedor ven;
+		while (in.hasNext() && !in.next().equals("Prácticas")) { //WMC + 2 //CCog + 2
+			String nombre = in.next();
+			in.next();
+			String idIn = in.next();
+			in.next();
+			String dni= in.next();
+			in.next();
+			double totalVentas = in.nextDouble();
+			ven = new VendedorEnPlantilla(nombre, idIn, dni, TipoVendedor.JUNIOR);
+			ven.setTotalVentas(totalVentas);
+			lista.add(ven);
+		}
+		while (in.hasNext()) { //WMC + 1 //CCog + 1
+			in.next();
+			String nombre = in.next();
+			in.next();
+			String idIn = in.next();
+			in.next();
+			String dni= in.next();
+			in.next();
+			double totalVentas = in.nextDouble();
+			ven = new vendedorEnPracticas(nombre, idIn, dni);
+			ven.setTotalVentas(totalVentas);
+			lista.add(ven);
+		}
 	}
 
 	/**
@@ -205,46 +202,10 @@ public class Tienda {
 			in.next();
 			Vendedor ven = null;
 			// lee los vendedores senior
-			while (in.hasNext() && !in.next().equals("Junior")) { //WMC + 2 //CCog + 2
-
-				String nombre = in.next();
-				in.next();
-				String idIn = in.next();
-				in.next();
-				String dni= in.next();
-				in.next();
-				double totalVentas = in.nextDouble();
-				ven = new VendedorEnPlantilla(nombre, idIn, dni, TipoVendedor.SENIOR);
-				ven.setTotalVentas(totalVentas);
-				lista.add(ven);
-			}
-			// lee los vendedores junior
-			while (in.hasNext() && !in.next().equals("Prácticas")) { //WMC + 2 //CCog + 2
-				String nombre = in.next();
-				in.next();
-				String idIn = in.next();
-				in.next();
-				String dni= in.next();
-				in.next();
-				double totalVentas = in.nextDouble();
-				ven = new VendedorEnPlantilla(nombre, idIn, dni, TipoVendedor.JUNIOR);
-				ven.setTotalVentas(totalVentas);
-				lista.add(ven);
-			}
-			while (in.hasNext()) { //WMC + 1 //CCog + 1
-				in.next();
-				String nombre = in.next();
-				in.next();
-				String idIn = in.next();
-				in.next();
-				String dni= in.next();
-				in.next();
-				double totalVentas = in.nextDouble();
-				ven = new vendedorEnPracticas(nombre, idIn, dni);
-				ven.setTotalVentas(totalVentas);
-				lista.add(ven);
-			}
-		} catch (FileNotFoundException e) {
+			leeSenior(in);
+			//lee los vendedores junior
+			leeJunior(in);
+		} catch (FileNotFoundException e) { //CCog + 1
 
 		} finally {
 			if (in != null) { //WMC + 1 //CCog + 1
@@ -254,6 +215,28 @@ public class Tienda {
 
 		return lista;
 
+	}
+
+	/**
+	 * Lee los vendedores senior del fichero pasado en función al formato
+	 * del usado particularmente en esta práctica.
+	 * @param in
+	 */
+	private void leeSenior(Scanner in) {
+		Vendedor ven;
+		while (in.hasNext() && !in.next().equals("Junior")) { //WMC + 2 //CCog + 2
+
+			String nombre = in.next();
+			in.next();
+			String idIn = in.next();
+			in.next();
+			String dni= in.next();
+			in.next();
+			double totalVentas = in.nextDouble();
+			ven = new VendedorEnPlantilla(nombre, idIn, dni, TipoVendedor.SENIOR);
+			ven.setTotalVentas(totalVentas);
+			lista.add(ven);
+		}
 	}
 
 	/**
@@ -288,7 +271,7 @@ public class Tienda {
 	 * @throws IOException
 	 */
 	private void muestraDatosVendedores(List<Vendedor> senior, List<Vendedor> junior, List<Vendedor> practicas)
-			throws IOException {
+			throws IOException { //WMC + 1
 		PrintWriter out = null;
 		try {
 

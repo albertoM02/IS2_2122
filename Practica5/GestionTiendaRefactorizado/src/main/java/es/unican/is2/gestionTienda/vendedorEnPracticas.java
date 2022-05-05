@@ -3,7 +3,6 @@ package es.unican.is2.gestionTienda;
 
 public class vendedorEnPracticas extends Vendedor {
 	
-	private String dni;
 	
 	/**
 	 * Retorna un nuevo vendedor en prácticas
@@ -12,7 +11,6 @@ public class vendedorEnPracticas extends Vendedor {
 	 */
 	public vendedorEnPracticas(String nombre, String id, String dni) { //WMC + 1
 		super(nombre, id, dni);
-		this.dni= dni;
 	}
 	
 	@Override
