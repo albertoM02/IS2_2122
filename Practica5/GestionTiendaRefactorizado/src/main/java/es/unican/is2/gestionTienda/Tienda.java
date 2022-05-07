@@ -155,7 +155,7 @@ public class Tienda {
 	 * del usado particularmente en esta práctica.
 	 * @param in
 	 */
-	private void leeJunior(Scanner in) {
+	private void leeJunior(Scanner in) { //WMC + 1
 		Vendedor ven;
 		while (in.hasNext() && !in.next().equals("Prácticas")) { //WMC + 2 //CCog + 2
 			String nombre = in.next();
@@ -222,7 +222,7 @@ public class Tienda {
 	 * del usado particularmente en esta práctica.
 	 * @param in
 	 */
-	private void leeSenior(Scanner in) {
+	private void leeSenior(Scanner in) { //WMC + 1
 		Vendedor ven;
 		while (in.hasNext() && !in.next().equals("Junior")) { //WMC + 2 //CCog + 2
 
@@ -304,5 +304,5 @@ public class Tienda {
 		}
 	}
 
-	// WMC = 37 //WMCn = 37/9 = 4'11... //CCog = 31
+	// WMC = 35 //WMCn = 35/12 = 2,916... //CCog = 29
 }

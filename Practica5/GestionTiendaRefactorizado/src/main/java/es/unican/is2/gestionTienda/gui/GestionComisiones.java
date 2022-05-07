@@ -24,14 +24,6 @@ public class GestionComisiones {
 		// opciones del menu
 		final int NUEVA_VENTA = 0, VENDEDOR_DEL_MES = 1, VENDEDORES = 2;
 
-		// variables auxiliares
-		String dni;
-		Lectura lect;
-
-		List<Vendedor> vendedores;
-		List<Vendedor> resultado;
-		String msj;
-
 		// crea la tienda
 		Tienda tienda = new Tienda("C:\\Temp\\datosTienda.txt");
 
@@ -43,62 +35,88 @@ public class GestionComisiones {
 		int opcion;
 
 		// lazo de espera de comandos del usuario
-		while (true) { //WMC + 1
+		while (true) { //WMC + 1 //CCog + 1
 			opcion = menu.leeOpcion();
 
 			// realiza las acciones dependiendo de la opcion elegida
-			switch (opcion) { //CCog + 1
+			switch (opcion) { //CCog + 2
 			case NUEVA_VENTA: //WMC + 1
-				lect = new Lectura("Datos Venta");
-				lect.creaEntrada("Id Vendedor", "");
-				lect.creaEntrada("Importe", "");
-				lect.esperaYCierra();
-				dni = lect.leeString("Id Vendedor");
-				double importe = lect.leeDouble("Importe");
-				try {
-					if (!tienda.anhadeVenta(dni, importe)) { //WMC + 1 //CCog + 2
-						mensaje("ERROR", "El vendedor no existe");
-					}
-				} catch (IOException e) {
-					mensaje("ERROR", "No se pudo guardar el cambio");
-				}
+				nuevaVenta(tienda);
 				break;
 
 			case VENDEDOR_DEL_MES: //WMC + 1
-
-				vendedores = tienda.vendedores();
-				resultado = new LinkedList<Vendedor>();
-				double maxVentas = 0.0;
-				for (Vendedor v : vendedores) { //WMC + 1 //CCog +  1
-					if (v.getTotalVentas() > maxVentas) { //WMC + 1 //CCog + 2
-						maxVentas = v.getTotalVentas();
-						resultado.clear();
-						resultado.add(v);
-					} else if (v.getTotalVentas() == maxVentas) { //WMC + 1 //CCog + 2
-						resultado.add(v);
-					}
-				}
-
-				msj = "";
-				for (Vendedor vn : resultado) { //WMC + 1 //CCog + 1
-					msj += vn.getNombre() + "\n";
-				}
-				mensaje("VENDEDORES DEL MES", msj);
+				vendedorDelMes(tienda);
 				break;
 
 			
 		case VENDEDORES: //WMC + 1
-
-			vendedores = tienda.vendedores();
-			System.out.println(vendedores.size());
-			Collections.sort(vendedores, new ComparadorVendedorVentas());			
-			msj = "";
-			for (Vendedor vn : vendedores) { //WMC + 1 //CCog + 1
-				msj += vn.getNombre() + " " + vn.getTotalVentas() + "\n";
-			}
-			mensaje("VENDEDORES", msj);
+			vendedores(tienda);
 			break;
 		}
+		}
+	}
+
+	/**
+	 * @param tienda
+	 */
+	private static void vendedores(Tienda tienda) { //WMC + 1
+		List<Vendedor> vendedores;
+		String msj;
+		vendedores = tienda.vendedores();
+		System.out.println(vendedores.size());
+		Collections.sort(vendedores, new ComparadorVendedorVentas());			
+		msj = "";
+		for (Vendedor vn : vendedores) { //WMC + 1 //CCog + 1
+			msj += vn.getNombre() + " " + vn.getTotalVentas() + "\n";
+		}
+		mensaje("VENDEDORES", msj);
+	}
+
+	/**
+	 * @param tienda
+	 */
+	private static void vendedorDelMes(Tienda tienda) { //WMC + 1
+		List<Vendedor> vendedores;
+		List<Vendedor> resultado;
+		String msj;
+		vendedores = tienda.vendedores();
+		resultado = new LinkedList<Vendedor>();
+		double maxVentas = 0.0;
+		for (Vendedor v : vendedores) { //WMC + 1 //CCog +  1
+			if (v.getTotalVentas() > maxVentas) { //WMC + 1 //CCog + 2
+				maxVentas = v.getTotalVentas();
+				resultado.clear();
+				resultado.add(v);
+			} else if (v.getTotalVentas() == maxVentas) { //WMC + 1 //CCog + 1
+				resultado.add(v);
+			}
+		}
+
+		msj = "";
+		for (Vendedor vn : resultado) { //WMC + 1 //CCog + 1
+			msj += vn.getNombre() + "\n";
+		}
+		mensaje("VENDEDORES DEL MES", msj);
+	}
+
+	/**
+	 * @param tienda
+	 */
+	private static void nuevaVenta(Tienda tienda) { //WMC + 1
+		String dni;
+		Lectura lect;
+		lect = new Lectura("Datos Venta");
+		lect.creaEntrada("Id Vendedor", "");
+		lect.creaEntrada("Importe", "");
+		lect.esperaYCierra();
+		dni = lect.leeString("Id Vendedor");
+		double importe = lect.leeDouble("Importe");
+		try {
+			if (!tienda.anhadeVenta(dni, importe)) { //WMC + 1 //CCog + 1
+				mensaje("ERROR", "El vendedor no existe");
+			}
+		} catch (IOException e) { //CCog + 1
+			mensaje("ERROR", "No se pudo guardar el cambio");
 		}
 	}
 
@@ -113,7 +131,7 @@ public class GestionComisiones {
 
 	}
 	
-	//WMC = 12 //WMCn = 12/2 = 6 //CCog = 10 
+	//WMC = 15 //WMCn = 15/5 = 3 //CCog = 11
 	
 	public static class ComparadorVendedorVentas implements Comparator<Vendedor>  {
 

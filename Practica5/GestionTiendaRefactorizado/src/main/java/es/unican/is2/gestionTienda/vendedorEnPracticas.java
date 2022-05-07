@@ -22,4 +22,4 @@ public class vendedorEnPracticas extends Vendedor {
 	}
 }
 
-//WMC = 4 // WMCn = 4/3 = 1,33... //CCog = 2
+//WMC = 4 // WMCn = 4/2 = 2... //CCog = 2

@@ -79,11 +79,11 @@ public abstract class Vendedor {
 	 * Muestra en un archivo out, la información referente al vendedor.
 	 * @param out archivo en el que se mostrará la información
 	 */
-	public void muestraInfoVendedor(PrintWriter out) {
+	public void muestraInfoVendedor(PrintWriter out) { //WMC + 1
 		out.println("  Nombre: " + this.getNombre() + " Id: " + this.getId() + " DNI: "+ this.getDni()+" TotalVentasMes: "
 				+ this.getTotalVentas());
 	}
 	
-	//WMC = 6 //WMCn = 6/6 = 1 //CCog = 0
+	//WMC = 8 //WMCn = 8/8 = 1 //CCog = 0
 	
 }

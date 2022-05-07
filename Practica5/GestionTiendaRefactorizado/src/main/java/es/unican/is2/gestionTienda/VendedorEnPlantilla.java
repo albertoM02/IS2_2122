@@ -1,6 +1,5 @@
 package es.unican.is2.gestionTienda;
 
-import java.io.PrintWriter;
 
 public class VendedorEnPlantilla extends Vendedor {
 	
@@ -30,4 +29,4 @@ public class VendedorEnPlantilla extends Vendedor {
 
 }
 
-//WMC = 5 //WMCn = 5/4 = 1.25 //CCog = 2
+//WMC = 5 //WMCn = 5/3 = 1.66.. //CCog = 2
