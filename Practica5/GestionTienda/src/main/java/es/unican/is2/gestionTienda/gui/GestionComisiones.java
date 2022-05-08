@@ -82,7 +82,7 @@ public class GestionComisiones {
 				msj = "";
 				for (Vendedor vn : resultado) { // WMC + 1 //CCog + 3
 					msj += vn.getNombre() + "\n";
-				}
+				} 
 				mensaje("VENDEDORES DEL MES", msj);
 				break;
 
