@@ -12,6 +12,7 @@ import fundamentos.Menu;
 import fundamentos.Lectura;
 import fundamentos.Mensaje;
 
+
 /**
  * Gestión de las comisiones de vendedores de una tienda
  */
@@ -21,6 +22,7 @@ public class GestionComisiones {
 	 * Programa principal basado en menu
 	 */
 	public static void main(String[] args) { // WMC + 1
+		
 		// opciones del menu
 		final int NUEVA_VENTA = 0, VENDEDOR_DEL_MES = 1, VENDEDORES = 2;
 
@@ -51,6 +53,10 @@ public class GestionComisiones {
 			case VENDEDORES: // WMC + 1
 				vendedores(tienda);
 				break;
+				
+			default :
+				//No se realiza acción porque se debe esperar a que el usuario elija 
+				//una acción.
 			}
 		}
 	}

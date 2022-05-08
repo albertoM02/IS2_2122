@@ -26,6 +26,8 @@ public class VendedorEnPlantilla extends Vendedor {
 		Vendedor v = (Vendedor) obj;
 		return (v.getId().equals(getId()) && v.getDni().equals(getDni())); //WMC + 1 //CCog + 1
 	}
+	
+	
 
 }
 

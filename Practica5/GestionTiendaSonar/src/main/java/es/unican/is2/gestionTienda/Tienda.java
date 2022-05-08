@@ -18,8 +18,8 @@ import java.util.Scanner;
  */
 public class Tienda {
 
-	private static final double BonusSenior = 0.01;
-	private static final double BonusJunior = 0.005;
+	private static final double BONUSSENIOR = 0.01;
+	private static final double BONUSJUNIOR = 0.005;
 	private LinkedList<Vendedor> lista = new LinkedList<Vendedor>();
 	private String direccion;
 	private String nombre;
@@ -101,10 +101,10 @@ public class Tienda {
 		if (v instanceof VendedorEnPlantilla) { //WMC + 1 //CCog + 1
 			switch (((VendedorEnPlantilla) v).tipo()) { //CCog + 1
 			case JUNIOR: //WMC + 1
-				importeFinal += importeFinal * BonusJunior;
+				importeFinal += importeFinal * BONUSJUNIOR;
 				break;
 			case SENIOR: //WMC + 1
-				importeFinal += importeFinal * BonusSenior;
+				importeFinal += importeFinal * BONUSSENIOR;
 				break;
 			}
 		}
@@ -120,28 +120,7 @@ public class Tienda {
 	 * @return vendedor con ese id o null si no existe ninguno
 	 */
 	public Vendedor buscaVendedor(String id) { //WMC + 1
-
-		lista = new LinkedList<Vendedor>();
-		Scanner in = null;
-		try {
-			// abre el fichero
-			in = new Scanner(new FileReader(datos));
-			// configura el formato de números
-			in.useLocale(Locale.ENGLISH);
-			nombre = in.nextLine();
-			direccion = in.nextLine();
-			in.next();
-			Vendedor ven = null;
-			leeSenior(in);
-			// lee los vendedores junior
-			leeJunior(in);
-		} catch (FileNotFoundException e) { //CCog + 1
-		} finally {
-			if (in != null) { //WMC + 1 //CCog + 1
-				in.close();
-			}
-		} // try
-
+		leeListaVendedores();
 		for (Vendedor v : lista) { //WMC + 1
 			if (v.getId().equals(id)) { //WMC + 1 //CCog + 2
 				return v;
@@ -189,32 +168,31 @@ public class Tienda {
 	 * @return La lista de vendedores
 	 */
 	public List<Vendedor> vendedores() { //WMC + 1
+		leeListaVendedores();
+		return lista;
+
+	}
+
+	/**
+	 * 
+	 */
+	private void leeListaVendedores() {
 		lista = new LinkedList<Vendedor>();
 
-		Scanner in = null;
-		try {
+		try (Scanner in = new Scanner(new FileReader(datos))){
 			// abre el fichero
-			in = new Scanner(new FileReader(datos));
 			// configura el formato de números
 			in.useLocale(Locale.ENGLISH);
 			nombre = in.nextLine();
 			direccion = in.nextLine();
 			in.next();
-			Vendedor ven = null;
 			// lee los vendedores senior
 			leeSenior(in);
 			//lee los vendedores junior
 			leeJunior(in);
 		} catch (FileNotFoundException e) { //CCog + 1
 
-		} finally {
-			if (in != null) { //WMC + 1 //CCog + 1
-				in.close();
-			}
 		} // try
-
-		return lista;
-
 	}
 
 	/**
@@ -272,11 +250,7 @@ public class Tienda {
 	 */
 	private void muestraDatosVendedores(List<Vendedor> senior, List<Vendedor> junior, List<Vendedor> practicas)
 			throws IOException { //WMC + 1
-		PrintWriter out = null;
-		try {
-
-			out = new PrintWriter(new FileWriter(datos));
-
+		try (PrintWriter out = new PrintWriter(new FileWriter(datos))){
 			out.println(nombre);
 			out.println(direccion);
 			out.println();
@@ -297,12 +271,11 @@ public class Tienda {
 				vendedorEnPracticas v3 = (vendedorEnPracticas) v;
 				v3.muestraInfoVendedor(out);
 			}
+			} catch (FileNotFoundException e) { //CCog + 1
 
-		} finally {
-			if (out != null) //WMC + 1 //CCog + 1
-				out.close();
+			}
 		}
 	}
 
 	// WMC = 35 //WMCn = 35/12 = 2,916... //CCog = 29
-}
+
