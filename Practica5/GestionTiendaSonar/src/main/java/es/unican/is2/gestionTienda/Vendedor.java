@@ -17,7 +17,7 @@ public abstract class Vendedor {
 	private double t;
 	private String dni;
 	
-	public Vendedor(String nombre, String id, String dni) { //WMC + 1
+	protected Vendedor(String nombre, String id, String dni) { //WMC + 1
 		this.nombre = nombre;
 		this.id = id;
 		this.dni = dni;

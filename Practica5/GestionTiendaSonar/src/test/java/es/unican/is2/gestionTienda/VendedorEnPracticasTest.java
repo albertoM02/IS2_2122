@@ -16,9 +16,9 @@ public class VendedorEnPracticasTest {
 	
 	@Test
 	public void testConstructor() {
-		assertEquals(sut.getId(), "1");
-		assertEquals(sut.getNombre(), "Ana");
-		assertEquals(sut.getDni(), "11111111A");
+		assertEquals("1", sut.getId());
+		assertEquals("Ana", sut.getNombre());
+		assertEquals("11111111A", sut.getDni());
 		assertTrue(sut.getTotalVentas()==0.0);
 	}
 	
@@ -54,9 +54,9 @@ public class VendedorEnPracticasTest {
 		vendedorEnPracticas distintoId = new vendedorEnPracticas("Ana", "2", "11111111A");
 		vendedorEnPracticas distintoNombre = new vendedorEnPracticas("Pepe", "1", "222222222A");
 		
-		assertTrue(sut.equals(igual));
-		assertFalse(sut.equals(distintoId));
-		assertFalse(sut.equals(distintoNombre));
+		assertEquals(sut, igual);
+		assertNotSame(sut, distintoId);
+		assertNotSame(sut, distintoNombre);
 	}
 	
 	
