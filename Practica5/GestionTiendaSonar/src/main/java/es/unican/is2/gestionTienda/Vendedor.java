@@ -1,6 +1,7 @@
 package es.unican.is2.gestionTienda;
 
 import java.io.PrintWriter;
+import java.util.Objects;
 
 /**
  * Vendedor de la tienda. 
@@ -16,6 +17,7 @@ public abstract class Vendedor {
 	// Valor total de las ventas mensuales realizadas por el vendedor
 	private double t;
 	private String dni;
+	
 	
 	protected Vendedor(String nombre, String id, String dni) { //WMC + 1
 		this.nombre = nombre;
@@ -83,6 +85,27 @@ public abstract class Vendedor {
 		out.println("  Nombre: " + this.getNombre() + " Id: " + this.getId() + " DNI: "+ this.getDni()+" TotalVentasMes: "
 				+ this.getTotalVentas());
 	}
+
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(dni, id, nombre, t);
+	}
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Vendedor other = (Vendedor) obj;
+		return Objects.equals(dni, other.dni) && Objects.equals(id, other.id) && Objects.equals(nombre, other.nombre)
+				&& Double.doubleToLongBits(t) == Double.doubleToLongBits(other.t);
+	}
+
 	
 	//WMC = 8 //WMCn = 8/8 = 1 //CCog = 0
 	

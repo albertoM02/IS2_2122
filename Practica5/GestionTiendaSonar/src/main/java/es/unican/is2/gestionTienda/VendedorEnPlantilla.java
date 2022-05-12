@@ -1,9 +1,11 @@
 package es.unican.is2.gestionTienda;
 
+import java.util.Objects;
 
 public class VendedorEnPlantilla extends Vendedor {
 	
 	private TipoVendedor tipo;
+	
 	/**
 	 * Retorna un nuevo vendedor en plantilla del tipo que se indica
 	 * @param nombre
@@ -18,17 +20,26 @@ public class VendedorEnPlantilla extends Vendedor {
 	public TipoVendedor tipo() { //WMC + 1
 		return tipo;
 	}
-	
-	@Override
-	public boolean equals(Object obj) { //WMC + 1
-		if (!(obj instanceof VendedorEnPlantilla)) //WMC + 1 //CCog + 1
-			return false;
-		Vendedor v = (Vendedor) obj;
-		return (v.getId().equals(getId()) && v.getDni().equals(getDni())); //WMC + 1 //CCog + 1
-	}
-	
-	
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + Objects.hash(tipo);
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		VendedorEnPlantilla other = (VendedorEnPlantilla) obj;
+		return tipo == other.tipo;
+	}
 }
 
 //WMC = 5 //WMCn = 5/3 = 1.66.. //CCog = 2

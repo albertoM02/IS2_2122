@@ -13,13 +13,7 @@ public class vendedorEnPracticas extends Vendedor {
 		super(nombre, id, dni);
 	}
 	
-	@Override
-	public boolean equals(Object obj) { //WMC + 1
-		if (!(obj instanceof vendedorEnPracticas))  //WMC + 1 //CCog + 1
-			return false;
-		vendedorEnPracticas v = (vendedorEnPracticas) obj;
-		return (v.getId().equals(getId()) && v.getDni().equals(getDni())); //WMC + 1 //CCog + 1
-	}
+
 }
 
 //WMC = 4 // WMCn = 4/2 = 2... //CCog = 2
