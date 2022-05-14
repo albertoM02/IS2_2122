@@ -20,7 +20,7 @@ public class Tienda {
 
 	private static final double BONUSSENIOR = 0.01;
 	private static final double BONUSJUNIOR = 0.005;
-	private LinkedList<Vendedor> lista = new LinkedList<Vendedor>();
+	private LinkedList<Vendedor> lista = new LinkedList<>();
 	private String direccion;
 	private String nombre;
 
@@ -177,7 +177,7 @@ public class Tienda {
 	 * 
 	 */
 	private void leeListaVendedores() {
-		lista = new LinkedList<Vendedor>();
+		lista = new LinkedList<>();
 
 		try (Scanner in = new Scanner(new FileReader(datos))) {
 			// abre el fichero
@@ -224,15 +224,14 @@ public class Tienda {
 	 */
 	private void vuelcaDatos() throws IOException { // WMC + 1
 
-		List<Vendedor> senior = new LinkedList<Vendedor>();
-		List<Vendedor> junior = new LinkedList<Vendedor>();
-		List<Vendedor> practicas = new LinkedList<Vendedor>();
+		List<Vendedor> senior = new LinkedList<>();
+		List<Vendedor> junior = new LinkedList<>();
+		List<Vendedor> practicas = new LinkedList<>();
 
 		for (Vendedor v : lista) { // WMC + 1 //CCog + 1
 			if (v instanceof vendedorEnPracticas) { // WMC + 1 //CCog + 2
 				practicas.add(v);
-			} else if (v instanceof VendedorEnPlantilla) { // WMC + 1 //CCog + 2
-				VendedorEnPlantilla vp = (VendedorEnPlantilla) v;
+			} else if (v instanceof VendedorEnPlantilla vp) { // WMC + 1 //CCog + 2
 				if (vp.tipo().equals(TipoVendedor.JUNIOR)) // WMC + 1 //CCog + 3
 					junior.add(vp);
 				else // CCog + 1
@@ -257,13 +256,13 @@ public class Tienda {
 			out.println();
 			out.println("Senior");
 			for (Vendedor v : senior) { // WMC + 1 //CCog + 1
-				Vendedor v1 = (Vendedor) v;
+				Vendedor v1 = v;
 				v1.muestraInfoVendedor(out);
 			}
 			out.println();
 			out.println("Junior");
 			for (Vendedor v : junior) { // WMC + 1 //CCog + 1
-				Vendedor v2 = (Vendedor) v;
+				Vendedor v2 = v;
 				v2.muestraInfoVendedor(out);
 			}
 			out.println();

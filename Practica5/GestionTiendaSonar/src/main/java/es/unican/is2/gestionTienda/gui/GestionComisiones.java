@@ -24,7 +24,9 @@ public class GestionComisiones {
 	public static void main(String[] args) { // WMC + 1
 		
 		// opciones del menu
-		final int NUEVA_VENTA = 0, VENDEDOR_DEL_MES = 1, VENDEDORES = 2;
+		final int NUEVA_VENTA = 0; 
+		final int VENDEDOR_DEL_MES = 1; 
+		final int VENDEDORES = 2;
 
 		// crea la tienda
 		Tienda tienda = new Tienda("C:\\Temp\\datosTienda.txt");
@@ -70,10 +72,11 @@ public class GestionComisiones {
 		vendedores = tienda.vendedores();
 		System.out.println(vendedores.size());
 		Collections.sort(vendedores, new ComparadorVendedorVentas());
-		msj = "";
+		StringBuilder bld =new StringBuilder();
 		for (Vendedor vn : vendedores) { // WMC + 1 //CCog + 1
-			msj += vn.getNombre() + " " + vn.getTotalVentas() + "\n";
+			bld.append(vn.getNombre() + " " + vn.getTotalVentas() + "\n");
 		}
+		msj = bld.toString();
 		mensaje("VENDEDORES", msj);
 	}
 
@@ -85,7 +88,7 @@ public class GestionComisiones {
 		List<Vendedor> resultado;
 		String msj;
 		vendedores = tienda.vendedores();
-		resultado = new LinkedList<Vendedor>();
+		resultado = new LinkedList<>();
 		double maxVentas = 0.0;
 		for (Vendedor v : vendedores) { // WMC + 1 //CCog + 1
 			if (v.getTotalVentas() > maxVentas) { // WMC + 1 //CCog + 2
@@ -96,11 +99,11 @@ public class GestionComisiones {
 				resultado.add(v);
 			}
 		}
-
-		msj = "";
+		StringBuilder bld =new StringBuilder();
 		for (Vendedor vn : resultado) { // WMC + 1 //CCog + 1
-			msj += vn.getNombre() + "\n";
+			bld.append(vn.getNombre() + "\n");
 		}
+		msj = bld.toString();
 		mensaje("VENDEDORES DEL MES", msj);
 	}
 
